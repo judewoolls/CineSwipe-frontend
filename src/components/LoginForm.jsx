@@ -6,17 +6,46 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  function submit(event) {
+  async function submit(event) {
     event.preventDefault();
-    console.log("Username:", username);
-    console.log("Password:", password);
-    alert("Login submitted");
+    // Validate input
     if (!username || !password) {
       setError("Username and password are required");
       return;
     }
     setError("");
     // You can add your login API call here
+    try {
+        const response = await fetch('http://localhost:8000/api/token/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password }),
+        })
+
+        if (!response.ok) {
+            throw new Error('Invalid username or password');
+        }
+
+        const data = await response.json();
+        // Handle successful login, e.g., store token, redirect, etc.
+
+        // For demonstration, we'll just log the tokens
+        console.log("Login successful!");
+        console.log("Access token:", data.access);
+        console.log("Refresh token:", data.refresh);
+
+        localStorage.setItem('accessToken', data.access);
+        localStorage.setItem('refreshToken', data.refresh);
+        console.log('Login successful', data);
+    } catch (error) {
+        setError(error.message);
+        console.error('Login failed', error);
+    }
+    setUsername("");
+    setPassword("");
+    
   }
 
   return (
