@@ -1,0 +1,38 @@
+body {
+    background-color: #1e1e1e;
+}
+
+h1, h2 {
+    color: red;
+    text-align: center;
+    margin-top: 50px;
+}
+
+label {
+    color: white;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+}
+button[type="submit"] {
+    background-color: #ff4757;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+
+}
+
+button[type="submit"]:hover {
+    background-color: #ff6b81;
+}
