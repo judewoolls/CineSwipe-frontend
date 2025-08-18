@@ -1,6 +1,6 @@
 export async function fetchWithToken(url, options = {}) {
-    const accessToken = localStorage.getItem("access_token");
-    const refreshToken = localStorage.getItem("refresh_token");
+    const accessToken = localStorage.getItem("accessToken");
+    const refreshToken = localStorage.getItem("refreshToken");
   
     if (!options.headers) options.headers = {};
     options.headers["Authorization"] = `Bearer ${accessToken}`;

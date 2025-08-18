@@ -43,16 +43,43 @@ function MovieList() {
         setCurrentIndex((prev) => prev + 1);
       }
     };
+
+    const handleLike = async () => {
+        const token = localStorage.getItem("accessToken");
+        const movie = movies[currentIndex];
+        if (!movie) return; // safety check
+      
+        try {
+          const response = await fetch("http://localhost:8000/api/liked-movies/", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              movie_id: movie.id,
+              title: movie.title,
+              poster_path: movie.poster_path,
+              release_year: movie.release_date ? movie.release_date.split("-")[0] : null,
+            }),
+          });
+      
+          if (!response.ok) {
+            throw new Error("Failed to save movie");
+          }
+      
+          console.log("Movie saved:", movie.title);
+        } catch (error) {
+          console.error("Error saving movie:", error);
+        } finally {
+          handleNext();
+        }
+      };
+      
+      
   
     // Guard: movies not loaded yet or loading next page
-    if (movies.length === 0 || loading) {
-        console.log("Loading movies...");
-        if (loading) {
-          console.log("Fetching more movies...");
-        }
-
-        return <p>Loading movies...</p>;
-    }
+    if (movies.length === 0 || loading) return <p>Loading movies...</p>;
     const movie = movies[currentIndex];
     if (!movie) return <p>Loading more movies...</p>; // waiting for next page
   
@@ -69,7 +96,7 @@ function MovieList() {
         <h3>{movie.title}</h3>
         <div className="buttons">
           <button onClick={handleNext}>❌ Dislike</button>
-          <button onClick={handleNext}>❤️ Like</button>
+          <button onClick={handleLike}>❤️ Like</button>
         </div>
       </div>
     );
