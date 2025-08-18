@@ -1,7 +1,7 @@
 import "../css/LoginForm.css";
 import { useState } from "react";
 
-function LoginForm() {
+function LoginForm({ setIsLoggedIn }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -39,6 +39,7 @@ function LoginForm() {
         localStorage.setItem('accessToken', data.access);
         localStorage.setItem('refreshToken', data.refresh);
         console.log('Login successful', data);
+        setIsLoggedIn(true);
     } catch (error) {
         setError(error.message);
         console.error('Login failed', error);
