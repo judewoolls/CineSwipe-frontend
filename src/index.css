@@ -26,8 +26,10 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
+  text-align: center;
+  min-width: 100%;
   min-height: 100vh;
+  background-color: #1e1e1e;
 }
 
 h1 {

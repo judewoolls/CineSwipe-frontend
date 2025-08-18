@@ -1,6 +1,7 @@
 import { useState } from "react";
 import LogoutButton from "./LogoutButton";
 import { useNavigate } from "react-router-dom";
+import "../css/homepage.css";
 
 function HomePage({ setIsLoggedIn }) {
     const navigate = useNavigate();
