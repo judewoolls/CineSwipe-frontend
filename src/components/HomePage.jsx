@@ -18,7 +18,6 @@ function HomePage({ setIsLoggedIn }) {
       <h1>{message}</h1>
       <p>This is the home page content</p>
       <div className="home-page-content">
-        <p>Get Swiping!</p>
         <div className="movie-list">
             <MovieList />
         </div>
