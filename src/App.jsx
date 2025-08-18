@@ -1,23 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import LoginForm from './components/LoginForm.jsx';
 import HomePage from './components/HomePage.jsx';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('accessToken'));
+  const isLoggedIn = !!localStorage.getItem('accessToken');
 
   return (
-    <>
-    { !isLoggedIn ? (
-      <LoginForm setIsLoggedIn={setIsLoggedIn} />
-    ) : (
-      <HomePage setIsLoggedIn={setIsLoggedIn}/>
-    )
-    }
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route 
+          path="/login" 
+          element={isLoggedIn ? <Navigate to="/home" /> : <LoginForm />} 
+        />
+        <Route 
+          path="/home" 
+          element={isLoggedIn ? <HomePage /> : <Navigate to="/login" />} 
+        />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App
