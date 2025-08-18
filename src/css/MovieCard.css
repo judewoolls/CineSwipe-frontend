@@ -1,0 +1,33 @@
+.move-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+  }
+  
+  .movie-card {
+    background-color: #222;
+    color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .movie-card:hover {
+    transform: scale(1.05);
+  }
+
+.movie-card {
+    width: 300px;
+    margin: auto;
+    text-align: center;
+    background: #111;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    overflow: hidden;
+  }
+  .movie-card img {
+    width: 100%;
+    border-bottom: 1px solid #222;
+    max-height: 100px;
+  }
+  

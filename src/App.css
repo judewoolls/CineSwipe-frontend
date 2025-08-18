@@ -4,12 +4,6 @@
   padding: 0;
 }
 
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-}
 
 #root {
   width: 100%;
