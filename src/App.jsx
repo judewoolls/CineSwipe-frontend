@@ -11,7 +11,7 @@ function App() {
 
   // only display NavBar if user is logged in
   return (
-    <>
+    <main>
       {isLoggedIn && <NavBar setIsLoggedIn={setIsLoggedIn} />} 
       <Routes>
         <Route
@@ -23,7 +23,7 @@ function App() {
           element={isLoggedIn ? <HomePage setIsLoggedIn={setIsLoggedIn} /> : <Navigate to="/" />}
         />
       </Routes>
-    </>
+    </main>
   );
 }
 

@@ -1,6 +1,8 @@
-.move-list {
+.movie-list {
+    width: 100vw;
+    max-width: 1200px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
   }
   
@@ -28,6 +30,5 @@
   .movie-card img {
     width: 100%;
     border-bottom: 1px solid #222;
-    max-height: 100px;
   }
   
