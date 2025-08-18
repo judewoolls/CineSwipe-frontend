@@ -11,6 +11,7 @@ function MovieList() {
   
     // Fetch movies for a given page
     const fetchMovies = async (pageNum) => {
+      if (loading) return; // Prevent multiple fetches
       setLoading(true);
       try {
         const response = await fetch(
@@ -18,6 +19,7 @@ function MovieList() {
         );
         const data = await response.json();
         setMovies((prev) => [...prev, ...data.results]);
+        setCurrentIndex(currentIndex + 1); // Reset index when new movies are fetched
       } catch (err) {
         console.error("Failed to fetch movies:", err);
       } finally {
@@ -32,16 +34,25 @@ function MovieList() {
   
     const handleNext = () => {
       if (currentIndex + 1 >= movies.length) {
-        // if we have more pages, fetch the next one
-        setPage((prev) => prev + 1);
+        // Automatically fetch the next page if at the end of the current list
+        if (!loading) {
+          setPage((prev) => prev + 1);
+        }
       } else {
-        // move to next movie
+        // Move to the next movie
         setCurrentIndex((prev) => prev + 1);
       }
     };
   
-    // Guard: movies not loaded yet
-    if (movies.length === 0) return <p>Loading movies...</p>;
+    // Guard: movies not loaded yet or loading next page
+    if (movies.length === 0 || loading) {
+        console.log("Loading movies...");
+        if (loading) {
+          console.log("Fetching more movies...");
+        }
+
+        return <p>Loading movies...</p>;
+    }
     const movie = movies[currentIndex];
     if (!movie) return <p>Loading more movies...</p>; // waiting for next page
   
