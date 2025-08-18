@@ -2,12 +2,12 @@ import { useState } from "react";
 import LogoutButton from "./LogoutButton";
 import { useNavigate } from "react-router-dom";
 
-function HomePage() {
+function HomePage({ setIsLoggedIn }) {
     const navigate = useNavigate();
     const handleLogout = () => {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
-        navigate("/login"); // Redirect to login page after logout
+        setIsLoggedIn(false); // Assuming setIsLoggedIn is passed as a prop
         
     };
   const [message, setMessage] = useState("Welcome to CineSwipe!");

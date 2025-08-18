@@ -2,7 +2,7 @@ import "../css/LoginForm.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function LoginForm() {
+function LoginForm({ setIsLoggedIn }) {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -34,9 +34,9 @@ function LoginForm() {
         // Handle successful login, e.g., store token, redirect, etc.
 
         // For demonstration, we'll just log the tokens
-        console.log("Login successful!");
         localStorage.setItem('accessToken', data.access);
         localStorage.setItem('refreshToken', data.refresh);
+        setIsLoggedIn(true);
         console.log('Login successful');
         navigate("/home"); // Redirect to home page after successful login
     } catch (error) {

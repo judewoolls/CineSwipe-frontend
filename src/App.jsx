@@ -1,25 +1,24 @@
 import './App.css'
 import LoginForm from './components/LoginForm.jsx';
 import HomePage from './components/HomePage.jsx';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { useState } from 'react';
 
 function App() {
-  const isLoggedIn = !!localStorage.getItem('accessToken');
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('accessToken'));
 
   return (
-    <Router>
-      <Routes>
-        <Route 
-          path="/login" 
-          element={isLoggedIn ? <Navigate to="/home" /> : <LoginForm />} 
-        />
-        <Route 
-          path="/home" 
-          element={isLoggedIn ? <HomePage /> : <Navigate to="/login" />} 
-        />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route
+        path="/"
+        element={isLoggedIn ? <Navigate to="/home" /> : <LoginForm setIsLoggedIn={setIsLoggedIn} />}
+      />
+      <Route
+        path="/home"
+        element={isLoggedIn ? <HomePage setIsLoggedIn={setIsLoggedIn} /> : <Navigate to="/" />}
+      />
+    </Routes>
   );
 }
 
-export default App
+export default App;
