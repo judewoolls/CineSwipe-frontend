@@ -50,7 +50,7 @@ function LoginForm({ setIsLoggedIn }) {
 
   return (
     <div className="login-form">
-      <h1>CineSwipe</h1>
+      <h1>Cine<span>Swipe</span></h1>
       <h2>Login</h2>
       <form onSubmit={submit}>
         <div className="form-group">
