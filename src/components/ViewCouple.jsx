@@ -1,5 +1,6 @@
 import CreateCoupleButton from "./CreateCoupleButton";
 import JoinCoupleForm from "./JoinCoupleForm";
+import LeaveCoupleButton from "./LeaveCoupleButton";
 import { useState, useEffect } from "react";
 import "../css/ViewCouple.css";
 
@@ -22,6 +23,7 @@ function ViewCouple({ couple, refreshCouple }) {
       {couple.error === "No couple data found." && (
         <CreateCoupleButton refreshCouple={refreshCouple} />
       )}
+      { couple && <LeaveCoupleButton onLeaveCouple={refreshCouple} />}
     </div>
   );
 }
