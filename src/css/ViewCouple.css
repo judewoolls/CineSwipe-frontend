@@ -1,0 +1,20 @@
+.couple-details {
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: black;
+    border: 1px solid red;
+    border-radius: 8px;
+    color: white;
+    box-shadow: 0 0 20px rgba(248, 0, 0, 0.5);
+}
+
+.view-couple h2 {
+    font-size: 24px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.view-couple {
+    padding-bottom: 50px;
+}

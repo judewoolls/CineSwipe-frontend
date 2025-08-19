@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../css/CreateCoupleButton.css"; 
 
 function CreateCoupleButton({refreshCouple}) {
     async function createCouple() {

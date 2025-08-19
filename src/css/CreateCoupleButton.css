@@ -1,0 +1,16 @@
+.create-couple-button {
+    outline: none;
+    background-color: mediumseagreen;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.create-couple-button:hover {
+    background-color: lightgreen;
+}
+.create-couple-button:active {
+    background-color: darkgreen;
+}
