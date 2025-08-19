@@ -1,8 +1,9 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { createCouple } from "../components/CreateCoupleButton";
 import CreateCoupleButton from "../components/CreateCoupleButton";
 import ViewCouple from "../components/ViewCouple";
+
+
 
 function CouplePage() {
   const [coupleData, setCoupleData] = useState(null);
@@ -44,10 +45,9 @@ function CouplePage() {
     <div>
       <h1>Couple Page</h1>
       <p>This is the couple page content.</p>
-      <CreateCoupleButton onClick={createCouple} />
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
-      {coupleData && <ViewCouple couple={coupleData} />}
+      {coupleData && <ViewCouple couple={coupleData} refreshCouple={fetchCoupleData} />}
       {!coupleData && !loading && !error && <p>No couple data available.</p>}
     </div>
   );
