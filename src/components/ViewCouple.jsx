@@ -1,4 +1,5 @@
 import CreateCoupleButton from "./CreateCoupleButton";
+import JoinCoupleForm from "./JoinCoupleForm";
 import { useState, useEffect } from "react";
 
 function ViewCouple( {couple, refreshCouple } ) {
@@ -11,7 +12,8 @@ function ViewCouple( {couple, refreshCouple } ) {
       <p>Partner 1: {couple.user1 ? couple.user1 : "Your are not in a couple"}</p>
       <p>Partner 2: {couple.user2 ? couple.user2 : "none" }</p>
       <p>Invite Code: {couple.invite_code}</p>
-       {(couple.error === "No couple data found.") && <CreateCoupleButton  refreshCouple={refreshCouple}/>} 
+       {(couple.error === "No couple data found.") && <CreateCoupleButton  refreshCouple={refreshCouple}/>}
+       {(couple.error === "No couple data found.") && <JoinCoupleForm  refreshCouple={refreshCouple}/>} 
     </div>
   );
 }

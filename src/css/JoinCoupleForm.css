@@ -1,0 +1,51 @@
+.join-couple-form {
+    display: flex;
+    width: 300px;
+    margin: 20px auto;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 8px;
+}
+
+.join-couple-form label {
+    font-size: large;
+    font-weight: bold;
+}
+
+.join-couple-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid white;
+    border-radius: 4px;
+    background-color: white;
+    color: black;
+}
+
+.join-couple-form input:focus {
+    outline: none;
+    border-color: pink;
+    box-shadow: inset 0 0 10px pink;
+}
+
+.join-couple-form button {
+    outline: none;
+    padding: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: large;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.join-couple-form button:hover {
+    background-color: pink;
+}
+.join-couple-form button:active {
+    background-color: green;
+}
