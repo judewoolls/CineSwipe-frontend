@@ -1,7 +1,7 @@
 import '../css/JoinCoupleForm.css';
 import { useState, useEffect } from 'react';
 
-function JoinCoupleForm() {
+function JoinCoupleForm({ refreshCouple }) {
 
     const [inviteCode, setInviteCode] = useState('');
     const [error, setError] = useState('');
@@ -36,6 +36,10 @@ function JoinCoupleForm() {
             } else {
                 const data = await response.json();
                 console.log('Joined couple successfully:', data);
+                // Trigger parent component to refresh the couple data
+                if (refreshCouple) {
+                    refreshCouple();
+                }
             }
         } catch (error) {
             setError(error.message);
