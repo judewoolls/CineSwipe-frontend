@@ -6,8 +6,8 @@ function MatchesList({ matches }) {
     <div>
         <ul className="matches-grid">
           {matches.map((match) => (
-            <li key={match.movie_id} className="match-item">
-              <p>{match.movie_id}</p>
+            <li key={match.id} className="match-item">
+              <p>{match.title}</p>
               <p>{match.description}</p>
             </li>
           ))}
