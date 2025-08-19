@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import LogoutButton from "./LogoutButton";
-import MovieList from "./MovieList";
+import LogoutButton from "../components/LogoutButton";
+import MovieList from "../components/MovieList";
 import { useNavigate } from "react-router-dom";
 import "../css/homepage.css";
 

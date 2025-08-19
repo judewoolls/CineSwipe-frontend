@@ -1,7 +1,8 @@
 import './App.css'
-import LoginForm from './components/LoginForm.jsx';
-import HomePage from './components/HomePage.jsx';
+import LoginForm from './pages/LoginForm.jsx';
+import HomePage from './pages/HomePage.jsx';
 import NavBar from './components/NavBar.jsx';
+import CouplePage from './pages/CouplePage.jsx';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -21,6 +22,10 @@ function App() {
         <Route
           path="/home"
           element={isLoggedIn ? <HomePage setIsLoggedIn={setIsLoggedIn} /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/couple"
+          element={isLoggedIn ? <CouplePage setIsLoggedIn={setIsLoggedIn} /> : <Navigate to="/" />}
         />
       </Routes>
     </main>
