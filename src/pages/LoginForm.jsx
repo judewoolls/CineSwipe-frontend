@@ -16,7 +16,7 @@ function LoginForm({ setIsLoggedIn }) {
       return;
     }
     setError("");
-    // You can add your login API call here
+    // call api to login
     try {
         const response = await fetch('http://localhost:8000/api/token/', {
             method: 'POST',
