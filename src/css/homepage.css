@@ -11,3 +11,11 @@
 p {
     color: white;
 }
+
+.home-page h1 {
+    color: white;
+}
+
+.home-page h1 span {
+    color: red;
+}

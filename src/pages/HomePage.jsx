@@ -11,11 +11,10 @@ function HomePage({ setIsLoggedIn }) {
         setIsLoggedIn(false); // Assuming setIsLoggedIn is passed as a prop
         
     };
-  const [message, setMessage] = useState("Welcome to CineSwipe!");
 
   return (
     <div className="home-page">
-      <h1>{message}</h1>
+      <h1>Welcome to Cine<span>Swipe!</span></h1>
       <p>This is the home page content</p>
       <div className="home-page-content">
         <div className="movie-list">
