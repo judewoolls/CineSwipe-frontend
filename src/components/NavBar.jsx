@@ -7,7 +7,7 @@ function NavBar() {
       <ul>
         <li><a href="/home">Home</a></li>
         <li><a href="#">Matches</a></li>
-        <li><a href="#">Profile</a></li>
+        <li><a href="/couple">Profile</a></li>
         <li><a href="/logout">Logout</a></li>
       </ul>
     </nav>

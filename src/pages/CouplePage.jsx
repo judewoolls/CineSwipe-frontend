@@ -19,7 +19,14 @@ function CouplePage() {
         }
       });
       if (!response.ok) {
+        if (response.status === 401) {
+          localStorage.removeItem("accessToken");
+          window.location.href = "/"; // Redirect to login if unauthorized
+        } else if (response.status === 404) {
+          setCoupleData(null); // Set coupleData to null if not found
+        } else {
         throw new Error("Network response was not ok");
+        }
       }
       const data = await response.json();
       setCoupleData(data);
