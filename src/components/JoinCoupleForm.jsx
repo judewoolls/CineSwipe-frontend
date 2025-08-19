@@ -54,7 +54,7 @@ function JoinCoupleForm({ refreshCouple }) {
         <form onSubmit={submit}>
             <div className="form-group">
                 <label htmlFor="inviteCode">Enter Invite Code</label>
-                <input type="text" name="inviteCode" id="inviteCode" placeholder="e.g ABCDEFGHIJ" onChange={(e) => setInviteCode(e.target.value)} />
+                <input type="text" name="inviteCode" id="inviteCode" placeholder="e.g ABCDEFGHIJ" onChange={(e) => setInviteCode(e.target.value)}  required />
             </div>
             <button type="submit" className="btn btn-primary">Join Couple</button>
         </form>

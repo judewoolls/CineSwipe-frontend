@@ -6,6 +6,7 @@
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    margin-top: 20px;
 }
 
 .create-couple-button:hover {

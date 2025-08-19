@@ -23,7 +23,7 @@ function ViewCouple({ couple, refreshCouple }) {
       {couple.error === "No couple data found." && (
         <CreateCoupleButton refreshCouple={refreshCouple} />
       )}
-      { couple && <LeaveCoupleButton onLeaveCouple={refreshCouple} />}
+      { couple.user1 && <LeaveCoupleButton onLeaveCouple={refreshCouple} />}
     </div>
   );
 }
