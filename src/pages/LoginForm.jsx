@@ -78,6 +78,9 @@ function LoginForm({ setIsLoggedIn }) {
         <button type="submit">Login</button>
         {error && <p className="error">{error}</p>}
       </form>
+      <p style={{ marginTop: "20px" }}>
+        Don't have an account? <a href="/signup">Sign Up</a>
+      </p>
     </div>
   );
 }

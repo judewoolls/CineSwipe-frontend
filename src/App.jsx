@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage.jsx';
 import NavBar from './components/NavBar.jsx';
 import CouplePage from './pages/CouplePage.jsx';
 import Matches from './pages/Matches.jsx';
+import SignupForm from './pages/SignupForm.jsx';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -31,6 +32,10 @@ function App() {
         <Route
           path="/matches"
           element={isLoggedIn ? <Matches setIsLoggedIn={setIsLoggedIn} /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/signup"
+          element={!isLoggedIn ? <SignupForm setIsLoggedIn={setIsLoggedIn} /> : <Navigate to="/" />}
         />
       </Routes>
     </main>
