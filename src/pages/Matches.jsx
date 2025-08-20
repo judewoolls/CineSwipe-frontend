@@ -1,6 +1,7 @@
 import "../css/Matches.css";
 import { useState, useEffect } from "react";
 import MatchesList from "../components/MatchesList.jsx";
+import { API_KEY } from "../../secret.js";
 
 function Matches() {
   const [matches, setMatches] = useState([]);
@@ -40,7 +41,7 @@ function Matches() {
     try {
       const moviePromises = ids.map((id) =>
         fetch(
-          `https://api.themoviedb.org/3/movie/${id}?api_key=b6f8cb2da00f3f7c8b9044f5c6e86ceb&language=en-US`
+          `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`
         ).then((res) => {
           if (!res.ok) throw new Error(`Failed to fetch movie ${id}`);
           return res.json();

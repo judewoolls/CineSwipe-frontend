@@ -2,6 +2,7 @@ import "../css/NavBar.css";
 import LogoutButton from "./LogoutButton";
 import { useState, useEffect } from "react";
 import NavFold from "./NavFold";
+import { Link } from "react-router-dom";
 
 function NavBar({ setIsLoggedIn }) {
   const [isFolded, setIsFolded] = useState(false);
@@ -26,9 +27,9 @@ function NavBar({ setIsLoggedIn }) {
 
       <ul className={`nav-links ${isMobile && !isFolded ? "show" : "hide"}`}>
 
-        <li><a href="/home"><button>Home</button></a></li>
-        <li><a href="/matches"><button>Matches</button></a></li>
-        <li><a href="/couple"><button>Couple</button></a></li>
+        <li><Link to="/home" onClick={() => {setIsFolded(true)}}><button>Home</button></Link></li>
+        <li><Link to="/matches" onClick={() => {setIsFolded(true)}}><button>Matches</button></Link></li>
+        <li><Link to="/couple" onClick={() => {setIsFolded(true)}}><button>Couple</button></Link></li>
         <li><LogoutButton onLogout={handleLogout} /></li>
       </ul>
     </nav>
