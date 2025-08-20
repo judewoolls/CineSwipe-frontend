@@ -5,12 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "../css/homepage.css";
 
 function HomePage({ setIsLoggedIn }) {
-    const handleLogout = () => {
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
-        setIsLoggedIn(false); // Assuming setIsLoggedIn is passed as a prop
-        
-    };
+
 
   return (
     <div className="home-page">
@@ -21,7 +16,6 @@ function HomePage({ setIsLoggedIn }) {
             <MovieList />
         </div>
       </div>
-        <LogoutButton onLogout={handleLogout} />
     </div>
   );
 }
