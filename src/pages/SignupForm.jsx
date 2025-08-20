@@ -77,6 +77,9 @@ function SignupPage({ setIsLoggedIn }) {
         />
         <button type="submit">Sign Up</button>
       </form>
+      <p style={{ marginTop: "20px" }}>
+        Already have an account? <a href="/">Login</a>
+      </p>
     </div>
   );
 }
