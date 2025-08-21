@@ -1,11 +1,10 @@
 function LeaveCoupleButton({ onLeaveCouple }) {
-
   const confirmLeaveCouple = () => {
     return window.confirm("Are you sure you want to leave the couple?");
   };
   const handleLeaveClick = async () => {
     if (!confirmLeaveCouple()) {
-        return; // exit if the user doesnt confirm
+      return; // exit if the user doesnt confirm
     }
     try {
       const response = await fetch("http://localhost:8000/api/leave-couple/", {
@@ -17,7 +16,27 @@ function LeaveCoupleButton({ onLeaveCouple }) {
       });
       if (!response.ok) {
         if (response.status === 401) {
+          // try refresh before loggin out
+          const refreshToken = localStorage.getItem("refreshToken");
+          if (refreshToken) {
+            const refreshResponse = await fetch(
+              "http://localhost:8000/api/token/refresh/",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ refresh: refreshToken }),
+              }
+            );
+            if (refreshResponse.ok) {
+              const data = await refreshResponse.json();
+              localStorage.setItem("accessToken", data.access);
+              return handleLeaveClick(); // Retry leaving couple after refreshing token
+            }
+          }
           localStorage.removeItem("accessToken");
+          localStorage.removeItem("refreshToken");
           window.location.href = "/"; // Redirect to login if unauthorized
         } else {
           throw new Error("Failed to leave couple");

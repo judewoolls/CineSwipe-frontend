@@ -20,6 +20,24 @@ function Matches() {
       });
       if (!response.ok) {
         if (response.status === 401) {
+          // try refresh before loggin out
+          const refreshToken = localStorage.getItem("refreshToken");
+          if (refreshToken) {
+            const refreshResponse = await fetch("http://localhost:8000/api/token/refresh/", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ refresh: refreshToken }),
+            });
+            if (refreshResponse.ok) {
+              const data = await refreshResponse.json();
+              localStorage.setItem("accessToken", data.access);
+              return fetchMovieIds(); // Retry fetching movie IDs after refreshing token
+            }
+          }
+
+          // If refresh fails or no refresh token, log out
           localStorage.removeItem("accessToken");
           localStorage.removeItem("refreshToken");
           setError("Unauthorized. Please log in again.");
