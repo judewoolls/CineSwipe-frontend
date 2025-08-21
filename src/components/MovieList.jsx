@@ -119,7 +119,7 @@ function MovieList() {
         alt={movie.title}
       />
       <h3>{movie.title}</h3>
-      <div className="buttons">
+      <div className="buttons" style={{ marginTop: "10px", marginBottom: "10px" }}>
         <button onClick={handleNext}>❌ Dislike</button>
         <button onClick={handleLike}>❤️ Like</button>
       </div>
