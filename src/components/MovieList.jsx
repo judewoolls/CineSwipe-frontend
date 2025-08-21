@@ -45,6 +45,7 @@ function MovieList() {
       });
     } else {
       controls.start({ x: 0, y: 0, rotate: 0 }); // snap back only if no swipe
+      setShadow("none");
     }
     setIsDragging(false);
   };
