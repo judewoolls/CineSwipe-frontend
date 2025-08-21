@@ -11,16 +11,35 @@ function MovieList() {
   const [loading, setLoading] = useState(false);
   const controls = useAnimation();
   const [isDragging, setIsDragging] = useState(false);
+  const [shadow, setShadow] = useState("none");
+
+  const handleDrag = (event, info) => {
+    const offset = info.offset.x;
+    const intensity = Math.min(Math.abs(offset), 20); // Limit intensity to 20
+
+  if (offset > 20) {
+    // Swiping right → green glow
+    setShadow(`10px 10px 30px rgba(0, 255, 0, ${intensity / 20})`);
+  } else if (offset < -20) {
+    // Swiping left → red glow
+    setShadow(`-10px 10px 30px rgba(255, 0, 0, ${intensity / 20})`);
+  } else {
+    setShadow("none");
+  }
+};
+
 
   const handleDragEnd = (event, info) => {
     const swipeThreshold = 150;
     if (info.offset.x > swipeThreshold) {
       controls.start({ x: 500, opacity: 0 }).then(() => {
+        setShadow("none");
         handleLike();
         controls.set({ x: 0, opacity: 1, rotate: 0 }); // instantly reset for next card
       });
     } else if (info.offset.x < -swipeThreshold) {
       controls.start({ x: -500, opacity: 0 }).then(() => {
+        setShadow("none");
         handleNext();
         controls.set({ x: 0, opacity: 1, rotate: 0 }); // instantly reset for next card
       });
@@ -36,6 +55,7 @@ function MovieList() {
     } else {
       setCurrentIndex((prev) => prev + 1);
     }
+    setShadow("none");
   };
   
 
@@ -138,9 +158,13 @@ function MovieList() {
       animate={controls}
       onDragStart={() => setIsDragging(true)}
       onDragEnd={handleDragEnd}
+      onDrag={handleDrag}
       style={{
         position: "absolute",
+        boxShadow: shadow,
+        transition: "box-shadow 0.1s ease-out"
       }}
+
     >
       <img
         src={
