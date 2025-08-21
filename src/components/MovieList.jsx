@@ -65,6 +65,11 @@ function MovieList() {
           });
       
           if (!response.ok) {
+            if (response.status === 401) {
+              localStorage.removeItem("accessToken");
+              localStorage.removeItem("refreshToken");
+              window.location.href = "/"; // Redirect to login if unauthorized
+            }
             throw new Error("Failed to save movie");
           }
       
