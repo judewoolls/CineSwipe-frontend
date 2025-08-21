@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../css/MovieCard.css";
 import { API_KEY } from "../../secret.js";
+import { motion, useAnimation } from "framer-motion";
 
 // MovieList component to display a list of movies with like/dislike functionality
 function MovieList() {
@@ -8,6 +9,35 @@ function MovieList() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const controls = useAnimation();
+  const [isDragging, setIsDragging] = useState(false);
+
+  const handleDragEnd = (event, info) => {
+    const swipeThreshold = 150;
+    if (info.offset.x > swipeThreshold) {
+      controls.start({ x: 500, opacity: 0 }).then(() => {
+        handleLike();
+        controls.set({ x: 0, opacity: 1, rotate: 0 }); // instantly reset for next card
+      });
+    } else if (info.offset.x < -swipeThreshold) {
+      controls.start({ x: -500, opacity: 0 }).then(() => {
+        handleNext();
+        controls.set({ x: 0, opacity: 1, rotate: 0 }); // instantly reset for next card
+      });
+    } else {
+      controls.start({ x: 0, y: 0, rotate: 0 }); // snap back only if no swipe
+    }
+    setIsDragging(false);
+  };
+  
+  const handleNext = () => {
+    if (currentIndex + 1 >= movies.length) {
+      if (!loading) setPage((prev) => prev + 1);
+    } else {
+      setCurrentIndex((prev) => prev + 1);
+    }
+  };
+  
 
   // Fetch movies for a given page
   const fetchMovies = async (pageNum) => {
@@ -32,17 +62,7 @@ function MovieList() {
     fetchMovies(page);
   }, [page]);
 
-  const handleNext = () => {
-    if (currentIndex + 1 >= movies.length) {
-      // Automatically fetch the next page if at the end of the current list
-      if (!loading) {
-        setPage((prev) => prev + 1);
-      }
-    } else {
-      // Move to the next movie
-      setCurrentIndex((prev) => prev + 1);
-    }
-  };
+
 
   const handleLike = async () => {
     const token = localStorage.getItem("accessToken");
@@ -109,7 +129,19 @@ function MovieList() {
   if (!movie) return <p>Loading more movies...</p>; // waiting for next page
 
   return (
-    <div className="movie-card">
+    <motion.div
+      className="swipe-card movie-card"
+      drag="x"
+      dragConstraints={{ left: 0, right: 0 }}
+      dragElastic={0.5}
+      whileTap={{ scale: 1.05 }}
+      animate={controls}
+      onDragStart={() => setIsDragging(true)}
+      onDragEnd={handleDragEnd}
+      style={{
+        position: "absolute",
+      }}
+    >
       <img
         src={
           movie.poster_path
@@ -119,11 +151,14 @@ function MovieList() {
         alt={movie.title}
       />
       <h3>{movie.title}</h3>
-      <div className="buttons" style={{ marginTop: "10px", marginBottom: "10px" }}>
+      <div
+        className="buttons"
+        style={{ marginTop: "10px", marginBottom: "10px" }}
+      >
         <button onClick={handleNext}>❌ Dislike</button>
         <button onClick={handleLike}>❤️ Like</button>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

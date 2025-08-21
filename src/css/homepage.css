@@ -5,7 +5,10 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
-    padding-bottom: 50px;
+}
+
+body {
+    min-height: 150vh;
 }
 
 p {
@@ -18,4 +21,16 @@ p {
 
 .home-page h1 span {
     color: red;
+}
+
+.movie-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.swipe-card {
+    top: 50%;
 }
