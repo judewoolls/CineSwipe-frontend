@@ -43,6 +43,7 @@
     border: 1px solid red;
     transition: all 0.3s ease-in-out;
     width: 100px;
+    outline: none;
 }
 
 .navbar ul li a button:hover {

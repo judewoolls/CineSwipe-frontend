@@ -24,8 +24,10 @@ function NavBar({ setIsLoggedIn }) {
     <nav className="navbar">
       <p>CineSwipe</p>
       {isMobile && <NavFold isFolded={isFolded} setIsFolded={setIsFolded} />}
-
-      <ul className={`nav-links ${isMobile && !isFolded ? "show" : "hide"}`}>
+      {!isMobile && <div className="nav-logo">CineSwipe</div>}
+      
+      {/* The check below ensures that when isFolded then it hides and when show it shows. Default is hidden */}
+      <ul className={`nav-links ${isMobile && !isFolded ? "hide" : "show"}`}>
 
         <li><Link to="/home" onClick={() => {setIsFolded(true)}}><button>Home</button></Link></li>
         <li><Link to="/matches" onClick={() => {setIsFolded(true)}}><button>Matches</button></Link></li>

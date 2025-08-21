@@ -19,6 +19,13 @@ function Matches() {
         },
       });
       if (!response.ok) {
+        if (response.status === 401) {
+          localStorage.removeItem("accessToken");
+          localStorage.removeItem("refreshToken");
+          setError("Unauthorized. Please log in again.");
+          setLoading(false);
+          window.location.href = "/"; // Redirect to login if unauthorized
+        }
         throw new Error("Failed to fetch matches");
       }
       const data = await response.json();
