@@ -11,7 +11,7 @@ function Matches() {
 
   const fetchMovieIds = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/matches/", {
+      const response = await fetch("https://cineswipe-backend-7d577091d70c.herokuapp.com/api/matches/", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -23,7 +23,7 @@ function Matches() {
           // try refresh before loggin out
           const refreshToken = localStorage.getItem("refreshToken");
           if (refreshToken) {
-            const refreshResponse = await fetch("http://localhost:8000/api/token/refresh/", {
+            const refreshResponse = await fetch("https://cineswipe-backend-7d577091d70c.herokuapp.com/api/token/refresh/", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",

@@ -91,7 +91,7 @@ function MovieList() {
     if (!movie) return; // safety check
 
     try {
-      const response = await fetch("http://localhost:8000/api/liked-movies/", {
+      const response = await fetch("https://cineswipe-backend-7d577091d70c.herokuapp.com/api/liked-movies/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -113,7 +113,7 @@ function MovieList() {
           const refreshToken = localStorage.getItem("refreshToken");
           if (refreshToken) {
             const refreshResponse = await fetch(
-              "http://localhost:8000/api/token/refresh/",
+              "https://cineswipe-backend-7d577091d70c.herokuapp.com/api/token/refresh/",
               {
                 method: "POST",
                 headers: {

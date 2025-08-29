@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8000/api";
+const BASE_URL = "https://cineswipe-backend-7d577091d70c.herokuapp.com/api";
 
 async function apiFetch(endpoint, options = {}) {
   const accessToken = localStorage.getItem("accessToken");

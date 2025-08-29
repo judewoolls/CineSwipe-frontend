@@ -20,7 +20,7 @@ function SignupPage({ setIsLoggedIn }) {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:8000/api/signup/", {
+      const response = await fetch("https://cineswipe-backend-7d577091d70c.herokuapp.com/api/signup/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
