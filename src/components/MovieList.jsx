@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../css/MovieCard.css";
-import { API_KEY } from "../../secret.js";
+const API_KEY = import.meta.env.VITE_API_KEY;
 import { motion, useAnimation } from "framer-motion";
 
 // MovieList component to display a list of movies with like/dislike functionality

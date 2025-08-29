@@ -1,7 +1,7 @@
 import "../css/Matches.css";
 import { useState, useEffect } from "react";
 import MatchesList from "../components/MatchesList.jsx";
-import { API_KEY } from "../../secret.js";
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 function Matches() {
   const [matches, setMatches] = useState([]);
